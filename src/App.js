@@ -46,13 +46,17 @@ class App extends Component {
     ]);
 
     engine.world.gravity.y = 1; // -1 makes it anti gravity
-
-    const stack = Composites.stack(200, 350, 1, 7, 0, 0, function (x, y) {
-      if (Common.random() < 0.8) {
-        return Bodies.rectangle(x, y, Common.random(80, 120), Common.random(20, 30));
-      } else {
-        return Bodies.rectangle(x + 6, y, Common.random(80, 120), Common.random(20, 30));
+    const options = {
+      restitution: 0.9,
+      render: {
+        strokeStyle: '#ffffff',
+        sprite: {
+          texture: './rock.png'
+        }
       }
+    }
+    const stack = Composites.stack(200, 350, 1, 3, 0, 0, function (x, y) {
+      return Bodies.rectangle(x, y, 348, 117, options);
     });
     World.add(engine.world, stack);
 
